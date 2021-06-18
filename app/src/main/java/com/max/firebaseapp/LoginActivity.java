@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,6 +32,17 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.login_btn_cadastrar);
         editEmail = findViewById(R.id.login_edit_email);
         editSenha = findViewById(R.id.login_edit_senha);
+
+        //caso usuário logado
+
+        if (auth.getCurrentUser()!=null){
+            String email = auth.getCurrentUser().getEmail();
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+
+            //passar o email p/ MainActivity
+            intent.putExtra("email",email);
+            startActivity(intent);
+        }
 
         btnCadastrar.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), CadastroActivity.class);
@@ -48,19 +62,40 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 // t - > é uma tarefa para logar
-                Task<AuthResult> t = auth.signInWithEmailAndPassword(email, senha);
+                auth.signInWithEmailAndPassword(email, senha)
 
                 //listener com sucesso
-                t.addOnSuccessListener(authResult -> {
+                .addOnSuccessListener(authResult -> {
                    Toast.makeText(this,"Bem Vindo",Toast.LENGTH_SHORT).show();
                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                    startActivity(intent);
-                });
-                t.addOnFailureListener(e -> {
+                })
+                .addOnFailureListener(e -> {
 
-                    //parametro e - > Excepction
-                    Toast.makeText(this,"Erro",Toast.LENGTH_SHORT).show();
+              /*      //parametro e - > Excepction
+                    Toast.makeText(this,"Erro"+
+                    e.getClass().toString(),Toast.LENGTH_SHORT).show();
+                    Log.e("Erro","Mensagem: " +e.getMessage()+"classe:"+e.getClass().toString());
+             */
+                    try {
+                        throw e;
+                    }catch(FirebaseAuthInvalidUserException userException){
+
+                        //Exceção para email inválido
+                        Toast.makeText(this, "Email Inválido!", Toast.LENGTH_SHORT).show();
+                    }catch(FirebaseAuthInvalidCredentialsException credException){
+
+                        //Exceção para senha incorreta
+                        Toast.makeText(this, "Senha Incorreta!", Toast.LENGTH_SHORT).show();
+                    }catch (Exception ex){
+
+                        //Exceção Genérica
+                       Toast.makeText(this,"Erro",Toast.LENGTH_SHORT).show();
+                    }
                 });
             }
+
+    private void addOnSuccessListener(Object bem_vindo) {
     }
+}
 

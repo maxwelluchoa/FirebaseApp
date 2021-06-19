@@ -10,22 +10,42 @@
         android:id="@+id/storage_image_cel"
         android:layout_width="300dp"
         android:layout_height="200dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/celular"
-        android:layout_marginTop="48dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storage_edit_nome" />
 
     <Button
         android:id="@+id/storage_btn_upload"
         style="@style/FormStyle"
         android:text="Upload"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/storage_image_cel"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storage_image_cel" />
+
+    <EditText
+        android:id="@+id/storage_edit_nome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Digite o nome da imagem"
+        app:layout_constraintEnd_toStartOf="@+id/storage_btn_galeria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/storage_btn_galeria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Galeria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/storage_edit_nome" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

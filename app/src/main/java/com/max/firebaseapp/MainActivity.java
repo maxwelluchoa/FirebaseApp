@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth = FirebaseAuth.getInstance();
-    private Button btnLogout;
+    private Button btnLogout,btnStorage;
 
 
 
@@ -23,7 +23,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
          btnLogout = findViewById(R.id.main_btn_logout);
-         btnLogout.setOnClickListener(v -> {
+         btnStorage = findViewById(R.id.main_btn_storage);
+
+         btnStorage.setOnClickListener(v ->{
+             //abri StorageActivity
+
+                 Intent intent = new Intent(getApplicationContext(), StorageActivity.class);
+                 startActivity(intent);
+         });
+
+        btnLogout.setOnClickListener(v -> {
 
              //deslogar usuário
              auth.signOut();

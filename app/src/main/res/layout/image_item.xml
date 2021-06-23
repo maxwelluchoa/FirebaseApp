@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="6dp"
-    android:layout_margin="6dp"
+    android:layout_margin="8dp"
     android:id="@+id/cardview"
     >
     <LinearLayout
@@ -26,13 +26,14 @@
             android:layout_marginBottom="8dp"
 
             />
+
         <ImageView
+            android:id="@+id/image_item_imageview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@color/colorAccent"
 
-        />
+            android:src="@color/colorAccent" />
     </LinearLayout>
 
 

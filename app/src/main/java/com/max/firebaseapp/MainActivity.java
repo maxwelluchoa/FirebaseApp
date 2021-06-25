@@ -53,12 +53,18 @@ public class MainActivity extends AppCompatActivity {
          imageAdapter.setListener(new ImageAdapter.OnItemClickListener() {
              @Override
              public void onDeleteClick(int position) {
-
+                 Upload upload = listaUploads.get(position);
+                 deleteUpload(upload);
              }
 
              @Override
              public void onUpdateClick(int position) {
+                Upload upload = listaUploads.get(position);
+                Intent intent = new Intent(getApplicationContext(), UpdateActivity.class);
 
+                //envia o upload pra outra Activity
+                intent.putExtra("upload",upload);
+                startActivity(intent);
              }
          });
 

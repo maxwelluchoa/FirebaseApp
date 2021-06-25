@@ -3,6 +3,7 @@ package com.max.firebaseapp.adapter;
 import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -75,14 +76,23 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageVH>{
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Selecionar ação");
 
-            menu.add(0,1,1,"deletar");
-            menu.add(0,2,2,"atualizar");
+            MenuItem deletar = menu.add(0,1,1,"deletar");
+            MenuItem atualizar = menu.add(0,2,2,"Atualizar");
+           // menu.add(0,2,2,"atualizar");
 
             //evento de clicque na opção deletar
             deletar.setOnMenuItemClickListener(menuItem->{
                 if(listener!=null){
                     int position = getAdapterPosition();
                     listener.onDeleteClick(position);
+                }
+                return true;
+            });
+
+            atualizar.setOnMenuItemClickListener(menuItem->{
+                if(listener!=null){
+                    int position = getAdapterPosition();
+                    listener.onUpdateClick(position);
                 }
                 return true;
             });

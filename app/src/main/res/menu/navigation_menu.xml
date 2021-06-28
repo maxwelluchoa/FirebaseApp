@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_menu_main"
+        android:title="Tela inicial" />
+    <item
+        android:id="@+id/nav_menu_lista_imagens"
+        android:title="Lista de Imagens" />
+    <item
+        android:id="@+id/nav_menu_cadastro_imagem"
+        android:title="Cadastro de Imagens" />
+</menu>

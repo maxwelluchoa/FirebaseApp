@@ -9,4 +9,15 @@
     <item
         android:id="@+id/nav_menu_cadastro_imagem"
         android:title="Cadastro de Imagens" />
+
+    <group
+        android:id="@+id/nav_group_2"
+        >
+
+        <item
+
+            android:id="@+id/nav_menu_logout"
+            android:title="Sair" />
+
+        </group>
 </menu>

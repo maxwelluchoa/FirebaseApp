@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(this, "Bem vindo" ,
                             Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(),
-                            MainActivity.class);
+                            NavigationActivity.class);
                     startActivity(intent);
                 })
                 .addOnFailureListener( e -> {

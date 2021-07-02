@@ -9,6 +9,9 @@
     <item
         android:id="@+id/nav_menu_cadastro_imagem"
         android:title="Cadastro de Imagens" />
+    <item
+        android:id="@+id/nav_menu_notification"
+        android:title="Notificações" />
 
     <group
         android:id="@+id/nav_group_2"

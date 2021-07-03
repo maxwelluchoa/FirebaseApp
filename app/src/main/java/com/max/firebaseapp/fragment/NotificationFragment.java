@@ -18,6 +18,7 @@ import android.widget.EditText;
 
 import com.max.firebaseapp.NavigationActivity;
 import com.max.firebaseapp.R;
+import com.max.firebaseapp.util.NotificationReceiver;
 
 import static com.max.firebaseapp.util.App.CHANNEL_1;
 
@@ -57,6 +58,19 @@ public class NotificationFragment extends Fragment {
                     .setGraph(R.navigation.nav_graph)
                     .setDestination(R.id.nav_menu_lista_imagens)
                     .createPendingIntent();
+
+            //criar um broadcasr receiver ->
+            // - Ele deve ser ativado EXPLICITAMENTE!
+            // - não deve durar mais de 10 seg
+            Intent brodcastIntent = new Intent(getContext(), NotificationReceiver.class);
+
+            brodcastIntent.putExtra("toast",msg);
+
+
+
+            PendingIntent actionIntent = PendingIntent.getBroadcast(getContext(),
+                    0,brodcastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
 
             //Criar a notificação
             Notification notification = new NotificationCompat.Builder(getContext(),CHANNEL_1)

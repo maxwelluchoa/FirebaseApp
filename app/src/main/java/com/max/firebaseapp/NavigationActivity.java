@@ -7,6 +7,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.max.firebaseapp.util.NotificationService;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -50,6 +53,13 @@ public class NavigationActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
 
         // Configura um NavigationView para usar como NavController
+
         NavigationUI.setupWithNavController(navigationView,navController);
+
+        //criar um serviço
+
+        Intent service = new Intent(getApplicationContext(), NotificationService.class);
+
+        getApplicationContext().startService(service);
     }
 }
